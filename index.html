@@ -12,9 +12,14 @@
 
 <body>
   <div id="chat-container" class="container">
-    <div id="header" class="d-flex align-items-center justify-content-center">
-      <img src="assets/LogoBranco.png" alt="Logo">
-      <span>Relógio de Oração</span>
+    <div id="header" class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <img src="assets/LogoBranco.png" alt="Logo">
+        <span>Relógio de Oração</span>
+      </div>
+      <button id="adminButton" class="btn btn-outline-light btn-sm" onclick="window.location.href='login.html'" title="Painel Administrativo">
+        <i class="bi bi-gear-fill"></i>
+      </button>
     </div>
     <div id="chat"></div>
 
@@ -23,7 +28,7 @@
       <!-- Dropdown de horário -->
       <select id="horaSelect" class="form-control" style="display: none;"></select>
 
-      <button class="btn btn-success" onclick="handleInput()">
+      <button id="sendButton" class="btn btn-success" onclick="handleInput()">
         <i class="bi bi-send"></i>
       </button>
     </div>

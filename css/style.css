@@ -33,7 +33,7 @@ body {
 }
 
 #header {
-  background: #075e54;
+  background: linear-gradient(135deg, #2E7D32, #1B4D3E);
   color: white;
   padding: 15px;
   border-radius: 0;
@@ -84,7 +84,7 @@ body {
 }
 
 .text {
-  background: #dcf8c6;
+  background: #E8F5E8;
   padding: 10px 15px;
   border-radius: 15px;
   font-size: 16px;
@@ -95,7 +95,7 @@ body {
 }
 
 .user .text {
-  background: #25d366;
+  background: #4CAF50;
   color: white;
 }
 
@@ -112,25 +112,25 @@ body {
 input {
   flex: 1;
   padding: 10px;
-  border: 0.1px solid #075e54 !important;
+  border: 0.1px solid #2E7D32 !important;
   font-size: 16px;
   border-radius: 5px 0px 0px 5px !important;
   background: #f1f1f1;
   cursor: text;
-  caret-color: #075e54;
+  caret-color: #2E7D32;
 }
 
 input:focus {
   outline: none !important;
-  border: 2px solid #25d366 !important;
+  border: 2px solid #4CAF50 !important;
   background-color: #ffffff !important;
-  box-shadow: 0 0 5px rgba(37, 211, 102, 0.5) !important;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5) !important;
   transition: all 0.3s ease;
 }
 
 button {
   padding: 0px !important;
-  background: #075e54 !important;
+  background: #2E7D32 !important;
   color: white !important;
   /* border: none; */
   cursor: pointer;
@@ -144,7 +144,7 @@ button {
 }
 
 button:hover {
-  background: #128c7e;
+  background: #4CAF50;
 }
 
 button i {
@@ -173,7 +173,7 @@ button i {
 
 .thinking {
   display: inline-block;
-  background: #075e54;
+  background: #2E7D32;
   padding: 5px 15px;
   border-radius: 20px;
   font-size: 14px;
@@ -207,5 +207,22 @@ button i {
     font-size: 14px;
   }
 } */
+
+/* Botão do Painel Administrativo */
+#adminButton {
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+}
+
+#adminButton:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: scale(1.05);
+}
+
+#adminButton i {
+  font-size: 16px;
+}
 
 /* teste */
