@@ -94,6 +94,7 @@ function addMessage(text, sender = 'bot', etapaRespondida = null) {
         atualizarEtapaInfo();
 
         if (step === 1) {
+<<<<<<< HEAD
           // Exibe mensagem de carregamento
           addMessage("⏳ Verificando horários disponíveis...");
           
@@ -140,6 +141,16 @@ function addMessage(text, sender = 'bot', etapaRespondida = null) {
           // Reexibe o dropdown de horários
           horaSelect.style.display = 'block';
           input.style.display = 'none';
+=======
+          // Reexibe o dropdown de horários
+          const mensagemData = await definirDataAgendamento();
+          await gerarHorariosDisponiveis(agendamento.data);
+
+          horaSelect.style.display = 'block';
+          input.style.display = 'none';
+
+          addMessage(mensagemData);
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
           setTimeout(() => {
             addMessage(perguntas[step]);
             atualizarEtapaInfo();
@@ -148,10 +159,13 @@ function addMessage(text, sender = 'bot', etapaRespondida = null) {
           input.value = text;
           horaSelect.style.display = 'none';
           input.style.display = 'block';
+<<<<<<< HEAD
           // Reabilitar o botão para outras etapas
           sendButton.disabled = false;
           sendButton.classList.remove('btn-secondary');
           sendButton.classList.add('btn-success');
+=======
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
         }
       });
 
@@ -199,6 +213,7 @@ function removerMensagensPosteriores(etapaLimite) {
   });
 }
 
+<<<<<<< HEAD
 // Número máximo de pessoas por horário
 const MAX_NOMES_POR_HORARIO = 3; // Podemos ajustar conforme necessário (nome1, nome2, nome3)
 
@@ -286,6 +301,70 @@ async function buscarHorariosOcupados() {
   }
   
   return horariosOcupados;
+=======
+async function buscarHorariosOcupados(data) {
+  const { data: resultados, error } = await supabase
+    .from('agendamentos')
+    .select('*')
+    .eq('data', data);
+
+  if (error) {
+    console.error('Erro ao buscar horários:', error);
+    return [];
+  }
+
+  return resultados || [];
+}
+
+async function definirDataAgendamento() {
+  const hoje = obterDataFormatada(0);
+  const amanha = obterDataFormatada(1);
+
+  const ocupadosHoje = await buscarHorariosOcupados(hoje);
+  const totalHorarios = 48;
+
+  if (ocupadosHoje.length < totalHorarios) {
+    agendamento.data = hoje;
+    return `📅 Agendamento será para hoje: ${hoje}`;
+  } else {
+    agendamento.data = amanha;
+    return `📅 Todos os horários de hoje estão ocupados. Agendamento será para amanhã: ${amanha}`;
+  }
+}
+
+async function gerarHorariosDisponiveis(data) {
+  const ocupados = await buscarHorariosOcupados(data);
+  const horariosAgendados = ocupados.map(item => item.horario.slice(0, 5));
+
+  horaSelect.innerHTML = '';
+
+  const agora = new Date();
+  const horaAtual = `${String(agora.getHours()).padStart(2, '0')}:${String(agora.getMinutes()).padStart(2, '0')}`;
+
+  for (let h = 0; h < 24; h++) {
+    for (let m = 0; m < 60; m += 30) {
+      const hora = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+
+      // Se for hoje, pula horários passados
+      if (data === obterDataFormatada(0) && hora < horaAtual) continue;
+
+      if (!horariosAgendados.includes(hora)) {
+        const option = document.createElement('option');
+        option.value = hora;
+        option.textContent = hora;
+        horaSelect.appendChild(option);
+      }
+    }
+  }
+
+  // Se nenhum horário estiver disponível
+  if (horaSelect.options.length === 0) {
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = '⚠️ Nenhum horário disponível';
+    horaSelect.appendChild(option);
+  }
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
 }
 
 
@@ -296,6 +375,7 @@ async function handleInput() {
   if (step === 1) {
     value = horaSelect.value;
     if (!value) return;
+<<<<<<< HEAD
     
     // Verifica se o horário selecionado está ocupado
     const selectedOption = horaSelect.options[horaSelect.selectedIndex];
@@ -303,6 +383,8 @@ async function handleInput() {
       // Não permite enviar horário ocupado
       return;
     }
+=======
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
   } else {
     value = input.value.trim();
     if (!value) return;
@@ -315,16 +397,28 @@ async function handleInput() {
   // Salva a resposta no objeto
   switch (step) {
     case 0:
+<<<<<<< HEAD
       agendamento.nome1 = value;
+=======
+      agendamento.nome_solicitante = value;
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
       break;
 
     case 1:
       agendamento.horario = value.slice(0, 5);
       break;
+<<<<<<< HEAD
+=======
+
+    case 2:
+      agendamento.observacoes = value;
+      break;
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
   }
 
   step++;
 
+<<<<<<< HEAD
   // Após o nome, mostrar seleção de horário
   if (step === 1) {
     // Exibe mensagem de carregamento
@@ -379,6 +473,24 @@ async function handleInput() {
       addMessage(perguntas[step]);
       atualizarEtapaInfo();
     }, 500);
+=======
+  // Etapa 2: definir data e gerar horários disponíveis
+  if (step === 1) {
+    const mensagemData = await definirDataAgendamento(); // define data e retorna mensagem
+    await gerarHorariosDisponiveis(agendamento.data);    // gera horários livres
+
+    horaSelect.style.display = 'block';
+    input.style.display = 'none';
+
+    // ✅ Exibe mensagem da data
+    addMessage(mensagemData);
+
+    // ✅ Aguarda antes de perguntar o horário
+    setTimeout(() => {
+      addMessage(perguntas[step]); // pergunta do horário
+      atualizarEtapaInfo();
+    }, 1000); // tempo suficiente para digitar a mensagem anterior
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
 
     return;
   } else {
@@ -386,21 +498,34 @@ async function handleInput() {
     input.style.display = 'block';
   }
 
+<<<<<<< HEAD
   // Verifica se todas as perguntas foram respondidas
   if (step < perguntas.length) {
+=======
+  // Exibe próxima pergunta ou envia agendamento
+  if (step < perguntas.length && step !== 1) {
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
     setTimeout(() => {
       addMessage(perguntas[step]);
       atualizarEtapaInfo();
     }, 500);
+<<<<<<< HEAD
   } else {
     setTimeout(() => {
       addMessage("📤 Enviando agendamento...");
       enviarAgendamento();
+=======
+  } else if (step >= perguntas.length) {
+    setTimeout(() => {
+    addMessage("📤 Enviando agendamento...");
+    enviarAgendamento();
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
     }, 500);
   }
 }
 
 async function enviarAgendamento() {
+<<<<<<< HEAD
   const horarioSelecionado = agendamento.horario;
   const nomeUsuario = agendamento.nome1;
   
@@ -527,6 +652,16 @@ async function enviarAgendamento() {
   } catch (error) {
     console.error('Erro geral:', error);
     addMessage('Erro inesperado ao processar agendamento.', 'bot');
+=======
+  const { error } = await supabase
+    .from('agendamentos')
+    .insert([agendamento]);
+
+  if (error) {
+    addMessage(`❌ Erro ao agendar: ${error.message}`, 'bot');
+  } else {
+    finalizarAgendamento();
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
   }
 }
 
@@ -534,6 +669,7 @@ function finalizarAgendamento() {
   input.style.display = 'none';
   document.querySelector('#input-container button').style.display = 'none';
 
+<<<<<<< HEAD
   // Determina a posição do agendamento (1ª, 2ª ou 3ª pessoa)
   let posicaoTexto = "";
   if (agendamento.posicao === 1) {
@@ -545,6 +681,9 @@ function finalizarAgendamento() {
   }
 
   addMessage(`✅ Seu agendamento foi realizado com sucesso! ⏰ Horário: ${agendamento.horario} ${posicaoTexto}.`);
+=======
+  addMessage(`✅ Seu agendamento foi realizado com sucesso! 📅 Data: ${agendamento.data} ⏰ Horário: ${agendamento.horario}.`);
+>>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
   
   setTimeout(() => {
     addMessage(`✨ Que sua oração seja um momento maravilhoso com Deus.`);
