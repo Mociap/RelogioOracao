@@ -144,11 +144,7 @@ button {
 }
 
 button:hover {
-<<<<<<< HEAD
   background: #4CAF50;
-=======
-  background: #128c7e;
->>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
 }
 
 button i {
@@ -177,11 +173,7 @@ button i {
 
 .thinking {
   display: inline-block;
-<<<<<<< HEAD
   background: #2E7D32;
-=======
-  background: #075e54;
->>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
   padding: 5px 15px;
   border-radius: 20px;
   font-size: 14px;
@@ -216,24 +208,22 @@ button i {
   }
 } */
 
-<<<<<<< HEAD
 /* Botão do Painel Administrativo */
 #adminButton {
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: transparent !important;
+  border: none !important;
   transition: all 0.3s ease;
   padding: 8px 12px;
 }
 
 #adminButton:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border-color: rgba(255, 255, 255, 0.5) !important;
-  transform: scale(1.05);
+  background: transparent !important;
+  border: none !important;
+  transform: scale(1.1);
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 #adminButton i {
-  font-size: 16px;
+  font-size: 18px;
 }
-
-=======
->>>>>>> 88b8a1aaac3e7a0406c5be5d1205ad15b8277f40
 /* teste */
