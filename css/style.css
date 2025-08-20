@@ -33,7 +33,7 @@ body {
 }
 
 #header {
-  background: linear-gradient(135deg, #2E7D32, #1B4D3E);
+  background: linear-gradient(135deg, #0d6dfc, #0d6dfc);
   color: white;
   padding: 15px;
   border-radius: 0;
@@ -47,8 +47,9 @@ body {
 }
 
 #header img {
-  width: 80px;
-  margin-right: 15px;
+  width: 100px;
+  margin-right: -10px !important;
+
 }
 
 #chat {
@@ -84,7 +85,7 @@ body {
 }
 
 .text {
-  background: #E8F5E8;
+  background: #e7f1ff;
   padding: 10px 15px;
   border-radius: 15px;
   font-size: 16px;
@@ -92,10 +93,14 @@ body {
   position: relative;
   max-width: 80%;
   word-wrap: break-word;
+  font-weight: 400;
+}
+.text b {
+  font-weight: 700;
 }
 
 .user .text {
-  background: #4CAF50;
+  background: #0d6efd;
   color: white;
 }
 
@@ -112,25 +117,25 @@ body {
 input {
   flex: 1;
   padding: 10px;
-  border: 0.1px solid #2E7D32 !important;
+  border: 0.1px solid #0d6efd !important;
   font-size: 16px;
   border-radius: 5px 0px 0px 5px !important;
   background: #f1f1f1;
   cursor: text;
-  caret-color: #2E7D32;
+  caret-color: #0d6efd;
 }
 
 input:focus {
   outline: none !important;
-  border: 2px solid #4CAF50 !important;
+  border: 2px solid #0d6efd !important;
   background-color: #ffffff !important;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5) !important;
+  box-shadow: 0 0 5px #0d6dfc80 !important;
   transition: all 0.3s ease;
 }
 
 button {
   padding: 0px !important;
-  background: #2E7D32 !important;
+  background: #0d6efd !important;
   color: white !important;
   /* border: none; */
   cursor: pointer;
@@ -144,7 +149,7 @@ button {
 }
 
 button:hover {
-  background: #4CAF50;
+  background: #0b5ed7;
 }
 
 button i {
@@ -173,7 +178,7 @@ button i {
 
 .thinking {
   display: inline-block;
-  background: #2E7D32;
+  background: #0d6efd;
   padding: 5px 15px;
   border-radius: 20px;
   font-size: 14px;
