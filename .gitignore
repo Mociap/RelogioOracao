@@ -17,6 +17,13 @@ node_modules/
 .env.development.local
 .env.test.local
 .env.production.local
+config.js
+
+# API Keys and sensitive data
+*.key
+*.pem
+*-key.json
+api-keys.json
 
 # IDE
 .vscode/
@@ -29,6 +36,15 @@ Thumbs.db
 # Credentials (keep these secure)
 credentials.json
 contaservico.json
+firebase-config.js
+supabase-config.js
+google-credentials.json
+
+# Build and deployment
+dist/
+build/
+*.zip
+*.tar.gz
 
 # Temporary files
 *.tmp
