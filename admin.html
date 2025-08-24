@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel Administrativo - Agenda de Salas</title>
+  <title>Painel Administrativo - Relógio de Oração</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./css/style.css">
@@ -20,7 +20,7 @@
     .admin-container {
       background: white;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(13, 109, 252, 0.1);
+      box-shadow: 0 10px 30px rgba(46, 125, 50, 0.1);
       margin: 20px auto;
       padding: 30px;
       max-width: 1200px;
@@ -29,7 +29,7 @@
     }
     
     .header-admin {
-      background: linear-gradient(135deg, #0d6efd, #0056b3);
+      background: linear-gradient(135deg, #2E7D32, #1B4D3E);
       color: white;
       padding: 20px;
       border-radius: 10px;
@@ -37,7 +37,68 @@
       text-align: center;
     }
     
-
+    .stats-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+      color: #2E7D32;
+      border: 1px solid rgba(46, 125, 50, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(46, 125, 50, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stats-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4CAF50, #66BB6A, #81C784);
+      border-radius: 16px 16px 0 0;
+    }
+    
+    .stats-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(46, 125, 50, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+      border-color: rgba(46, 125, 50, 0.2);
+    }
+    
+    .stats-card h5 {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #1B5E20;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .stats-card h3 {
+      font-weight: 700;
+      font-size: 32px;
+      margin-bottom: 0;
+      color: #2E7D32;
+      text-shadow: 0 1px 2px rgba(46, 125, 50, 0.1);
+    }
+    
+    .stats-card h6 {
+      font-weight: 500;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #388E3C;
+    }
+    
+    .stats-card i {
+      font-size: 18px;
+      margin-right: 8px;
+      background: linear-gradient(45deg, #4CAF50, #66BB6A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     
     .table-container {
       background: white;
@@ -57,13 +118,13 @@
       border: none !important;
     }
     
-    /* Botões de ação limpos - apenas ícones azuis */
+    /* Botões de ação limpos - apenas ícones verdes */
      .btn-clean-action {
        background: transparent !important;
        border: none !important;
        padding: 8px !important;
        margin: 0 4px !important;
-       color: #0d6efd !important;
+       color: #198754 !important;
        transition: all 0.2s ease !important;
        cursor: pointer;
        border-radius: 4px !important;
@@ -71,7 +132,7 @@
      }
     
     .btn-clean-action:hover {
-      color: #0056b3 !important;
+      color: #146c43 !important;
       transform: scale(1.1) !important;
     }
     
@@ -562,24 +623,49 @@
       </div>
     </div>
 
-
+    <!-- Estatísticas -->
+    <div class="row">
+      <div class="col-md-3">
+        <div class="stats-card">
+          <h5><i class="bi bi-people"></i> Total de Agendamentos</h5>
+          <h3 id="totalAgendamentos">-</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <h5><i class="bi bi-users"></i> Fase Grupo 1</h5>
+          <h6 id="grupo1Total">- pessoas</h6>
+          <h6 id="grupo1Percentual">-%</h6>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <h5><i class="bi bi-users"></i> Fase Grupo 2</h5>
+          <h6 id="grupo2Total">- pessoas</h6>
+          <h6 id="grupo2Percentual">-%</h6>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <h5><i class="bi bi-users"></i> Fase Grupo 3</h5>
+          <h6 id="grupo3Total">- pessoas</h6>
+          <h6 id="grupo3Percentual">-%</h6>
+        </div>
+      </div>
+    </div>
 
     <!-- Busca e Filtros -->
     <div class="search-container">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <label class="form-label">Buscar por Nome:</label>
           <input type="text" id="searchName" class="form-control" placeholder="Digite o nome...">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <label class="form-label">Filtrar por Horário:</label>
           <input type="time" id="searchTime" class="form-control">
         </div>
-        <div class="col-md-3">
-          <label class="form-label">Filtrar por Finalidade:</label>
-          <input type="text" id="searchFinalidade" class="form-control" placeholder="Digite a finalidade...">
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <label class="form-label">Ações:</label>
           <div>
             <button class="btn btn-primary" onclick="carregarAgendamentos()"><i class="bi bi-arrow-clockwise"></i></button>
@@ -616,11 +702,10 @@
           <table class="table table-striped table-hover">
             <thead class="table-dark">
               <tr>
-                <th>Nome</th>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Finalidade</th>
-                <th>Sala</th>
+                <th>Horário</th>
+                <th>1ª Pessoa</th>
+                <th>2ª Pessoa</th>
+                <th>3ª Pessoa</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -634,7 +719,7 @@
   </div>
 
   <!-- Modal para Editar Agendamento -->
-  <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="editModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -643,26 +728,22 @@
         </div>
         <div class="modal-body">
           <form id="editForm">
-            <input type="hidden" id="editId">
+            <input type="hidden" id="editHorario">
             <div class="mb-3">
-              <label class="form-label">Nome:</label>
-              <input type="text" id="editNome" class="form-control" placeholder="Nome da pessoa">
+              <label class="form-label">Horário:</label>
+              <input type="text" id="editHorarioDisplay" class="form-control" readonly>
             </div>
             <div class="mb-3">
-              <label class="form-label">Data:</label>
-              <input type="date" id="editData" class="form-control">
+              <label class="form-label">1ª Pessoa:</label>
+              <input type="text" id="editNome1" class="form-control" placeholder="Nome da 1ª pessoa">
             </div>
             <div class="mb-3">
-              <label class="form-label">Hora:</label>
-              <input type="time" id="editHora" class="form-control">
+              <label class="form-label">2ª Pessoa:</label>
+              <input type="text" id="editNome2" class="form-control" placeholder="Nome da 2ª pessoa">
             </div>
             <div class="mb-3">
-              <label class="form-label">Finalidade:</label>
-              <input type="text" id="editFinalidade" class="form-control" placeholder="Finalidade da reserva (ex: célula, treinamento, evento)">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Sala:</label>
-              <input type="text" id="editSala" class="form-control" placeholder="Nome da sala">
+              <label class="form-label">3ª Pessoa:</label>
+              <input type="text" id="editNome3" class="form-control" placeholder="Nome da 3ª pessoa">
             </div>
           </form>
         </div>
@@ -674,7 +755,6 @@
     </div>
   </div>
 
-  <script src="./js/google-calendar.js"></script>
   <script type="module" src="./js/admin.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
