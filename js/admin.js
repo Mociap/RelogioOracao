@@ -135,15 +135,23 @@ function renderizarTabela() {
   agendamentosFiltrados.forEach(agendamento => {
     const row = document.createElement('tr');
     
-    const nome1 = agendamento.nome1 || '';
-    const nome2 = agendamento.nome2 || '';
-    const nome3 = agendamento.nome3 || '';
+    // Função para capitalizar texto (Title Case)
+    const capitalize = (str) => {
+      if (!str) return '';
+      return str.toLowerCase().split(' ').map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      }).join(' ');
+    };
+    
+    const nome1 = capitalize(agendamento.nome1) || '';
+    const nome2 = capitalize(agendamento.nome2) || '';
+    const nome3 = capitalize(agendamento.nome3) || '';
     
     row.innerHTML = `
       <td><strong>${agendamento.horario}</strong></td>
-      <td>${nome1 ? `<span class="badge bg-success">${nome1}</span>` : '<span class="text-muted">Vazio</span>'}</td>
-      <td>${nome2 ? `<span class="badge bg-info">${nome2}</span>` : '<span class="text-muted">Vazio</span>'}</td>
-      <td>${nome3 ? `<span class="badge bg-warning">${nome3}</span>` : '<span class="text-muted">Vazio</span>'}</td>
+      <td>${nome1 ? `<span>${nome1}</span>` : '<span class="text-muted">Vazio</span>'}</td>
+      <td>${nome2 ? `<span>${nome2}</span>` : '<span class="text-muted">Vazio</span>'}</td>
+      <td>${nome3 ? `<span>${nome3}</span>` : '<span class="text-muted">Vazio</span>'}</td>
       <td>
         <button class="btn-clean-action" onclick="editarAgendamento('${agendamento.horario}')" title="Editar">
           <i class="bi bi-pencil"></i>
